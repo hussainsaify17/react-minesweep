@@ -64,24 +64,17 @@ const createEmptyArray = (height, width) => {
 }
 
 // plant mines on the board
-const plantMines = (data, height, width, mines) => {
+const plantMines = (data, verticalCount, horizontalCount, mines) => {
     let randomx, randomy, minesPlanted = 0;
-
     while (minesPlanted < mines) {
-        randomx = getRandomNumber(width);
-        randomy = getRandomNumber(height);
-        try{
-            if (!(data[randomx][randomy].isMine)) {
-                data[randomx][randomy].isMine = true;
-                minesPlanted++;
-            }
-        }
-        catch{
-            console.log(height, width)
+        randomx = getRandomNumber(verticalCount);
+        randomy = getRandomNumber(horizontalCount);
+        if (!(data[randomx][randomy].isMine)) {
+            data[randomx][randomy].isMine = true;
+            minesPlanted++;
         }
     }
-
-    return (data);
+    return data;
 }
 
 export { getMines, getFlags, getHidden, getRandomNumber, createEmptyArray, plantMines }
